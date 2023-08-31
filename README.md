@@ -1,3 +1,4 @@
+[English](README_en.md)|[中文](README.md)
 # 自定义页面滚动 Chrome 扩展
 
 ## 概览
