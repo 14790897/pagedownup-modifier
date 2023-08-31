@@ -1,80 +1,79 @@
-# Custom Page Scroll Chrome Extension
+# 自定义页面滚动 Chrome 扩展
 
-## Overview
+## 概览
 
-The Custom Page Scroll extension allows users to scroll specific elements on a webpage using keyboard shortcuts. It's a handy tool that enhances your browsing experience by giving you more control over how you navigate web content.
+自定义页面滚动扩展允许用户使用键盘快捷键在网页上滚动特定元素。这是一个方便的工具，通过给您更多地控制如何导航网页内容来增强您的浏览体验。
 
-## Features
+## 功能
 
-- Customizable scroll distance for Page Up and Page Down.
-- Automatically detects the scrollable element on the page.
-- Easy-to-use popup interface for settings.
-- Works on all websites.
+- 自定义 Page Up 和 Page Down 的滚动距离。
+- 自动检测页面上可滚动的元素。
+- 设置中有易于使用的弹出界面。
+- 适用于所有网站。
 
-## Installation
+## 安装
 
-1. Search pagedownup-modifier in https://chrome.google.com/webstore/
-2. Install
+1. 在 https://chrome.google.com/webstore/ 中搜索 pagedownup-modifier。
+2. 安装。
 
-> **Note**: After installation, you'll need to refresh all open tabs or restart the browser for the extension to work properly.
+> **注意**：安装后，您需要刷新所有打开的标签页或重新启动浏览器以使扩展正常工作。
 
-## Usage
+## 使用方法
 
-1. Use the keyboard shortcuts to scroll up or down:
+1. 使用键盘快捷键向上或向下滚动：
 
-   - Scroll Down: `Alt+PageDown`
-   - Scroll Up: `Alt+PageUp`
+   - 向下滚动：`Alt+PageDown`
+   - 向上滚动：`Alt+PageUp`
 
-2. To customize the scroll distance, click on the extension icon to open the popup interface. You can set the distance for both Page Up and Page Down.
+2. 要自定义滚动距离，请点击扩展图标以打开弹出界面。您可以为 Page Up 和 Page Down 设置距离。
 
-## Technical Details
+## 技术细节
 
-The extension is built using:
+该扩展是使用以下技术构建的：
 
 - Vue 3
 - TypeScript
 - Tailwind CSS
 - Chrome APIs
 
-## Contributing
+## 贡献
 
-Feel free to open issues and pull requests!
+随时欢迎提出问题和拉取请求！
 
-## License
+## 许可证
 
 MIT
 
-## For Developers
+## 对开发者的说明
 
-### Folders
+### 文件夹
 
-- `src` - main source.
-  - `content-script` - scripts and components to be injected as `content_script`
-    - `iframe` content script iframe vue3 app which will be injected into page
-  - `background` - scripts for background.
-  - `popup` - popup vuejs application root
-    - `pages` - popup pages
-  - `options` - options vuejs application root
-    - `pages` - options pages
-  - `pages` - application pages, common to all views (About, Contact, Authentication etc)
-  - `components` - auto-imported Vue components that are shared in popup and options page.
-  - `assets` - assets used in Vue components
-- `dist` - built files, also serve stub entry for Vite on development.
+- `src` - 主源代码。
+  - `content-script` - 作为 `content_script` 注入的脚本和组件。
+    - `iframe` - 将被注入页面的内容脚本 iframe vue3 应用。
+  - `background` - 后台脚本。
+  - `popup` - 弹出 vuejs 应用程序根目录。
+    - `pages` - 弹出页面。
+  - `options` - 选项 vuejs 应用程序根目录。
+    - `pages` - 选项页面。
+  - `pages` - 应用程序页面，适用于所有视图（关于、联系、身份验证等）。
+  - `components` - 在弹出和选项页面中共享的自动导入的 Vue 组件。
+  - `assets` - 用于 Vue 组件的资产。
 
-### Development
+### 开发
 
 ```bash
 pnpm dev
 ```
 
-Then **load extension in browser with the `dist/` folder**.
+然后**用 `dist/` 文件夹在浏览器中加载扩展**。
 
-### Build
+### 构建
 
-To build the extension, run
+要构建扩展，请运行
 
 ```bash
 pnpm build
 ```
 
-And then pack files under `dist`, you can upload `dist.crx` or `dist.xpi` to appropriate extension store.
+然后打包 `dist` 下的文件，您可以将 `dist.crx` 或 `dist.xpi` 上传到适当的扩展商店。
