@@ -1,78 +1,56 @@
-# vite-vue3-chrome-extension-v3
+# Custom Page Scroll Chrome Extension
 
-[![build](https://github.com/mubaidr/vite-vue3-chrome-extension-v3/actions/workflows/build.yml/badge.svg)](https://github.com/mubaidr/vite-vue3-chrome-extension-v3/actions/workflows/build.yml) [![release](https://github.com/mubaidr/vite-vue3-chrome-extension-v3/actions/workflows/release.yml/badge.svg)](https://github.com/mubaidr/vite-vue3-chrome-extension-v3/actions/workflows/release.yml)
+## Overview
 
-A [Vite](https://vitejs.dev/) powered WebExtension ([Chrome](https://developer.chrome.com/docs/extensions/reference/), [FireFox](https://addons.mozilla.org/en-US/developers/), etc.) starter template.
+The Custom Page Scroll extension allows users to scroll specific elements on a webpage using keyboard shortcuts. It's a handy tool that enhances your browsing experience by giving you more control over how you navigate web content.
 
 ## Features
 
-- Vue 3 - Composition API, `Script setup` and more!
-- Vue 3 app in Content Script too (template added)
-- HMR for extension pages and content scripts
-- Tailwind css for UI
-- Vue Router setup incuding `vite-plugin-pages` for automatic route registration
-- Effortless communications - powered by [`webext-bridge`](https://github.com/zikaari/webext-bridge) and [VueUse](https://github.com/antfu/vueuse) storage
-- [Components auto importing](./src/components)
-- [Icons](./src/components) - Access to icons from any iconset directly
-  - By default [Material Design Icons](https://materialdesignicons.com/cdn/1.6.50-dev/) set is enabled
-- [TypeScript](https://www.typescriptlang.org/) - type safe
-- `Eslint` & `Prettier` configured for `vue`, `javascript`, `typescript`
-- [CRXJS Vite Plugin](https://crxjs.dev/vite-plugin) Build a Chrome Extension with Vite
-- Github build and release actions
+- Customizable scroll distance for Page Up and Page Down.
+- Automatically detects the scrollable element on the page.
+- Easy-to-use popup interface for settings.
+- Works on all websites.
 
-*Please create an issue if you feel some feature is missing or could be improved.*
+## Installation
 
-## Pre-packed
+1. Search pagedownup-modifier in https://chrome.google.com/webstore/
+2. Install
 
-### WebExtension Libraries
-
-- [`webext-bridge`](https://github.com/zikaari/webext-bridge) - effortlessly communication between contexts
-
-### Vite Plugins
-
-- [`vite-plugin-pages`](https://github.com/hannoeru/vite-plugin-pages) - File system based route generator for Vite
-- [`unplugin-auto-import`](https://github.com/antfu/unplugin-auto-import) - Directly use `browser` and Vue Composition API without importing
-- [`unplugin-vue-components`](https://github.com/antfu/vite-plugin-components) - components auto import
-- [`unplugin-icons`](https://github.com/antfu/unplugin-icons) - icons as components
-  - [Material Design Icons](https://icon-sets.iconify.design/mdi/) - Material Design Icons
-
-### Vue Plugins
-
-- [VueUse](https://github.com/antfu/vueuse) - collection of useful composition APIs
-
-### UI Frameworks
-
-- [tailwindcss](https://tailwindcss.com) - A utility-first CSS framework
-
-### Coding Style
-
-- Use Composition API with [`<script setup>` SFC syntax](https://github.com/vuejs/rfcs/pull/227)
-
-## Use the Template
-
-### GitHub Template
-
-[Create a repo from this template on GitHub](https://github.com/mubaidr/vite-vue3-chrome-extension-v3/generate).
-
-### Clone to local
-
-If you prefer to do it manually with the cleaner git history
-
-> If you don't have pnpm installed, run: npm install -g pnpm
-
-```bash
-pnpx degit mubaidr/vite-vue3-chrome-extension-v3 my-webext
-cd my-webext
-pnpm i
-```
+> **Note**: After installation, you'll need to refresh all open tabs or restart the browser for the extension to work properly.
 
 ## Usage
+
+1. Use the keyboard shortcuts to scroll up or down:
+
+   - Scroll Down: `Alt+PageDown`
+   - Scroll Up: `Alt+PageUp`
+
+2. To customize the scroll distance, click on the extension icon to open the popup interface. You can set the distance for both Page Up and Page Down.
+
+## Technical Details
+
+The extension is built using:
+
+- Vue 3
+- TypeScript
+- Tailwind CSS
+- Chrome APIs
+
+## Contributing
+
+Feel free to open issues and pull requests!
+
+## License
+
+MIT
+
+## For Developers
 
 ### Folders
 
 - `src` - main source.
   - `content-script` - scripts and components to be injected as `content_script`
-    -  `iframe` content script iframe vue3 app which will be injected into page
+    - `iframe` content script iframe vue3 app which will be injected into page
   - `background` - scripts for background.
   - `popup` - popup vuejs application root
     - `pages` - popup pages
@@ -100,7 +78,3 @@ pnpm build
 ```
 
 And then pack files under `dist`, you can upload `dist.crx` or `dist.xpi` to appropriate extension store.
-
-## Credits
-
-This template is heavenly inspired by: https://github.com/antfu/vitesse-webext
