@@ -79,14 +79,17 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
                 })
                 hasSentMessage = true // 更新标志以防止再次发送
                 localStorage.setItem(
-                  'lastScrolledElement',event.target.className || '') // 本地存储
+                  'lastScrolledElement',
+                  event.target.className || ''
+                ) // 本地存储
 
                 // 监听来自 background 的消息 8.31
                 chrome.runtime.onMessage.addListener(
                   (message, sender, sendResponse) => {
                     if (message.type === 'GET_LOCAL_STORAGE') {
-                      const storedData =
-                        localStorage.getItem('lastScrolledElement')
+                      const storedData = localStorage.getItem(
+                        'lastScrolledElement'
+                      )
                       sendResponse({ data: storedData })
                     }
                   }
@@ -148,5 +151,16 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   if (message.type === 'SCROLLED_ELEMENT') {
     console.log('Received scrolled element with class:', message.targetClass)
     await chrome.storage.local.set({ targetElement: message.targetClass }) // 保存接收到的类名
+  }
+})
+
+chrome.runtime.onInstalled.addListener(function (details) {
+  if (details.reason === 'install') {
+    chrome.notifications.create({
+      type: 'basic',
+      iconUrl: '/src/assets/icon.png',
+      title: 'Refresh Required',
+      message: 'Please refresh all open tabs to apply the new settings.',
+    })
   }
 })
