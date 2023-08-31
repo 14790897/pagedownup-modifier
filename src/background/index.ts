@@ -75,19 +75,18 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
                 // 使用chrome.runtime.sendMessage发送捕获到的event.target
                 chrome.runtime.sendMessage({
                   type: 'SCROLLED_ELEMENT',
-                  targetClass: event.target.className, // 或其他能唯一标识这个元素的信息
+                  targetClass: event.target.className || '', // 或其他能唯一标识这个元素的信息
                 })
                 hasSentMessage = true // 更新标志以防止再次发送
                 localStorage.setItem(
-                  'lastScrolledElement',
-                  event.target.className
-                ) // 本地存储
-                // 监听来自 background 的消息
+                  'lastScrolledElement',event.target.className || '') // 本地存储
+
+                // 监听来自 background 的消息 8.31
                 chrome.runtime.onMessage.addListener(
                   (message, sender, sendResponse) => {
                     if (message.type === 'GET_LOCAL_STORAGE') {
                       const storedData =
-                        localStorage.getItem('lastScrolledElement') || ''
+                        localStorage.getItem('lastScrolledElement')
                       sendResponse({ data: storedData })
                     }
                   }
