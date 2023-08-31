@@ -1,38 +1,41 @@
-<script setup lang="ts">
-// chrome.identity.launchWebAuthFlow(
-//   {
-//     interactive: true,
-//     url:
-//       `https://github.com/login/oauth/authorize` +
-//       `?client_id=55e294602d71eb006dc505540cf0614d6b3c7f35` +
-//       `&redirect_uri=https://ekgmcbpgglflmgcfajnglpbcbdccnnje.chromiumapp.org/github_cb` +
-//       `&scope=user.email`,
-//   },
-//   (a) => {
-//     console.log(a)
-//   }
-// )
-</script>
-
 <template>
-  <div class="text-center m-4">
-    <h1 class="text-3xl font-bold underline pb-6">Hello world from Popup!</h1>
-
-    <RouterLink to="/about">About</RouterLink>
+  <div id="app" class="p-4 bg-gray-100 h-screen">
+    <h1 class="text-2xl font-bold mb-4">Custom Page Scroll</h1>
+    <div class="space-y-4">
+      <label class="flex items-center space-x-4">
+        <span class="text-lg">Page Up Distance:</span>
+        <input v-model="pageUpDistance" class="p-2 border rounded" />
+      </label>
+      <label class="flex items-center space-x-4">
+        <span class="text-lg">Page Down Distance:</span>
+        <input v-model="pageDownDistance" class="p-2 border rounded" />
+      </label>
+    </div>
   </div>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<script setup lang="ts">
+
+const pageUpDistance = ref<number>(0);
+const pageDownDistance = ref<number>(0);
+
+onMounted(() => {
+  chrome.storage.sync.get(['pageUpDistance', 'pageDownDistance'], (result: any) => {
+    pageUpDistance.value = result.pageUpDistance || 300;
+    pageDownDistance.value = result.pageDownDistance || 300;
+  });
+});
+
+const updateScrollDistance = (key: string, value: number) => {
+  chrome.storage.sync.set({ [key]: value });
+};
+
+watch(pageUpDistance, (newVal: number) => {
+  updateScrollDistance('pageUpDistance', newVal);
+});
+
+watch(pageDownDistance, (newVal: number) => {
+  updateScrollDistance('pageDownDistance', newVal);
+});
+
+</script>
