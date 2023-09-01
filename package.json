@@ -3,7 +3,7 @@
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },
-  "description": "The Custom Page Scroll extension allows users to scroll specific elements on a webpage using keyboard shortcuts. It's a handy tool that enhances your browsing experience by giving you more control over how you navigate web content.",
+  "description": "The Custom Page Scroll extension allows users to scroll specific elements on a webpage using keyboard shortcuts.",
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.0.0-beta.18",
     "@iconify-json/mdi": "^1.1.54",

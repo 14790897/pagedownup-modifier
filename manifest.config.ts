@@ -38,7 +38,7 @@ export default defineManifest(async (env) => ({
     '128': 'src/assets/icon128.png',
   },
   // options_page: 'src/options/index.html',
-  permissions: ['storage', 'activeTab', 'scripting'],
+  permissions: ['storage', 'activeTab', 'scripting', 'notifications'],
   web_accessible_resources: [
     {
       matches: ['*://*/*'],

@@ -155,10 +155,11 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 })
 
 chrome.runtime.onInstalled.addListener(function (details) {
-  if (details.reason === 'install') {
+  if (details.reason === 'install' ) {
+    //|| details.reason === 'update'
     chrome.notifications.create({
       type: 'basic',
-      iconUrl: '/src/assets/icon.png',
+      iconUrl: '/src/assets/icon128.png',
       title: 'Refresh Required',
       message: 'Please refresh all open tabs to apply the new settings.',
     })
